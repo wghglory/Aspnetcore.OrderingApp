@@ -3,50 +3,51 @@
 @using Aspnetcore.OrderingApp.Helpers
 
 <div id="page-wrapper">
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">
-            Add a New Client <br/>
-            <small>We're always happy to gain new customers.</small>
-        </h1>
-    </div>
-</div>
-@using (Html.BeginForm("NewClient", "Client", FormMethod.Post))
-{
     <div class="row">
-        <div class="col-md-6">
-            @Html.EditorForModel()
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Add a New Client <br/>
+                <small>We're always happy to gain new customers.</small>
+            </h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6 form-group">
-            <label>Subscribe to:</label>
-            <div>
-                @for (var i = 0; i < Model.EmailPromos.Count; i++)
-                {
-                    @Html.CheckBoxFor(e => e.EmailPromos[i].IsSubscribed)
-                    <span>@Model.EmailPromos[i].Title</span>
-                    @Html.HiddenFor(e => e.EmailPromos[i].Id)
-                    @Html.HiddenFor(e => e.EmailPromos[i].Title)
-                }
+    @using (Html.BeginForm("NewClient", "Client", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-md-6">
+                @Html.EditorForModel()
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h3>Billing Address</h3>
-            @Html.EditorFor(x => x.BillingAddress)
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label>Subscribe to:</label>
+                <div>
+                    @for (var i = 0; i < Model.EmailPromos.Count; i++)
+                    {
+                        @Html.CheckBoxFor(e => e.EmailPromos[i].IsSubscribed)
+                        <span>@Model.EmailPromos[i].Title</span>
+                        @Html.HiddenFor(e => e.EmailPromos[i].Id)
+                        @Html.HiddenFor(e => e.EmailPromos[i].Title)
+                    }
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h3>Mailing Address</h3>
-            @Html.EditorFor(x => x.MailingAddress)
-            <input type="submit" class="pull-right btn btn-primary"/>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Billing Address</h3>
+                @Html.EditorFor(x => x.BillingAddress)
+            </div>
         </div>
-    </div>
-}
-<br/>
-@section Footer {
-    <p>Make sure to send new clients a welcome package.</p>
-}
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Mailing Address</h3>
+                @Html.EditorFor(x => x.MailingAddress)
+                <input type="submit" class="pull-right btn btn-primary"/>
+            </div>
+        </div>
+    }
+    <br/>
+    @section Footer {
+        <p>Make sure to send new clients a welcome package.</p>
+    }
+</div>
